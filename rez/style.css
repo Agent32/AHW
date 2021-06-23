@@ -1,5 +1,52 @@
+.main {
+  margin-top: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: darkgray;
+}
+.personal {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  padding: 2% 5% 5%;
+  border-bottom: 1px solid gray;
+  background-color: white;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 5px;
+}
+.personal h4 {
+  margin: 0;
+  padding: 0;
+}
 
+.main .personal img {
+  display: flex;
+  align-self: flex-end;
+  position: absolute;
 
-.main{
-    color:red;
+  width: 200px;
+}
+.main .skills {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2% 5% 2%;
+  width: 400px;
+  height: 30%;
+  border-bottom: 1px solid gray;
+  background-color: white;
+  margin-bottom: 5px;
+}
+
+.main .skills tr:nth-child(even) {
+  background-color: #eee;
+}
+
+.exp {
+  padding: 2% 5% 5%;
+  width: 400px;
+  border-radius: 0 0 10px 10px;
+  background-color: white;
+  margin-bottom: 5px;
 }
