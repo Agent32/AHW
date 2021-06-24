@@ -29,7 +29,7 @@
 }
 .main .skills {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
   padding: 2% 5% 2%;
   width: 400px;
@@ -38,11 +38,7 @@
   background-color: white;
   margin-bottom: 5px;
 }
-.main .skills {
-  display: flex;
-  align-items: flex-start;
- 
-}
+
 
 .main .skills tr:nth-child(even) {
   background-color: #eee;
