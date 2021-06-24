@@ -38,6 +38,11 @@
   background-color: white;
   margin-bottom: 5px;
 }
+.main .skills {
+  display: flex;
+  align-items: flex-start;
+ 
+}
 
 .main .skills tr:nth-child(even) {
   background-color: #eee;
