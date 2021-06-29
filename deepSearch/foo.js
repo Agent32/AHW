@@ -17,7 +17,7 @@ const bigObj = {
     },
   },
 }
-
+var t0 = performance.now();
 function getValue(mObj, target) {
   const mainAnsw = []
   const adress = []
@@ -40,5 +40,35 @@ function getValue(mObj, target) {
   return mainAnsw
 }
 
+t0 = performance.now();
 const answ = getValue(bigObj, 'hiddenJem')
 console.log(answ)
+var t1 = performance.now();
+console.log("Call to getValue took " + (t1 - t0) + " milliseconds.");
+
+
+const searchValueByKey = (obj, key) => {
+  const result = [];
+  if (typeof obj !== "object") {
+    return;
+  }
+  if (obj.hasOwnProperty(key)) {
+    return [{ value: obj[key], path: [key] }];
+  }
+  for (let objKey of Object.keys(obj)) {
+    const internalResult = searchValueByKey(obj[objKey], key);
+    if (internalResult && internalResult.length) {
+      internalResult.forEach((item) => {
+        item.path.unshift(objKey);
+        result.push(item);
+      });
+    }
+  }
+  return result;
+};
+
+const answ2 = searchValueByKey(bigObj, 'hiddenJem')
+console.log(answ2)
+t1 = performance.now();
+
+console.log("Call to searchValueByKey took " + (t1 - t0) + " milliseconds.");
