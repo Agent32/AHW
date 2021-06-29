@@ -40,7 +40,7 @@
 }
 
 
-.main .skills tr:nth-child(even) {
+.main .skills li:nth-child(even) {
   background-color: #eee;
 }
 
