@@ -16,33 +16,40 @@ Application should utilize class PrimeFactorDetector and method
 getMaxPrime that has input param array of digits and returns a single digit that can be split to maximal number of primes
 */
 
-/*
-
- b=a-1;
-    while(a%b!=0) {
-        b--;
+class PrimeFactorDetector {
+  _isConstraintsFree = (arr) => {
+    if (arr.length >= 2 && arr.length <= 10) {
+      for (let current of arr) {
+        if (isNaN(current)) {
+          return false
+        }
+      }
+      return true
     }
-
-*/
-
-
-const isReady = (arr) => {
-  if (arr.length >= 2 && arr.length <= 10) {
-    for (current of arr) {
-      if (isNaN(current)) {
-        return false
+    return false
+  }
+  _factorize = (x) => {
+    let factors = []
+    for (let i = 2; i <= Math.sqrt(x); i++) {
+      while (x % i == 0) {
+        factors.push(i)
+        x = x / i
       }
     }
-    return true
+    if (x != 1) {
+      factors.push(x)
+    }
+    return factors.length
   }
-  return false
-}
 
-
-class PrimeFactorDetector {
   getMaxPrime = (arr) => {
-    if (isReady(arr)) {
-      return 1
+    if (this._isConstraintsFree(arr)) {
+      const answerArray = []
+      for (let curr of arr) {
+        answerArray.push({ number: curr, value: this._factorize(curr) })
+      }
+      answerArray.sort((a, b) => (a.value > b.value ? -1 : 1))
+      return answerArray[0].number
     } else {
       return false
     }
@@ -54,3 +61,5 @@ console.log(getPrime.getMaxPrime([1, 2, 3, 3, 3, 3, 3, 3, 3, 3, 1]))
 console.log(getPrime.getMaxPrime([1]))
 console.log(getPrime.getMaxPrime([1, 2, 'c', 3]))
 console.log(getPrime.getMaxPrime([12, 3, 5]))
+console.log(getPrime.getMaxPrime([20, 576, 4188, 20]))
+
