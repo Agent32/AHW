@@ -29,17 +29,17 @@ class PrimeFactorDetector {
     return false
   }
   _factorize = (x) => {
-    let factors = []
+    let resultFactors = []
     for (let i = 2; i <= Math.sqrt(x); i++) {
       while (x % i == 0) {
-        factors.push(i)
+        resultFactors.push(i)
         x = x / i
       }
     }
     if (x != 1) {
-      factors.push(x)
+      resultFactors.push(x)
     }
-    return factors.length
+    return resultFactors.length
   }
 
   getMaxPrime = (arr) => {
