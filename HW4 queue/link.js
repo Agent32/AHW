@@ -106,10 +106,7 @@ class tree {
   }
 
   _addSt(data) {
-      return ( 
-    {value : data,
-    left : null,
-    right : null} )
+    return { value: data, left: null, right: null }
   }
 
   add(data) {
@@ -119,7 +116,7 @@ class tree {
         if (data === current.value) return undefined
         if (data < current.value) {
           if (current.left === null) {
-             current.left = this._addSt(data)
+            current.left = this._addSt(data)
             return this
           }
           current = current.left
@@ -134,38 +131,24 @@ class tree {
     }
   }
 
-find(data){
-      if(!this.root) return false
-      
-      let current = this.root
-      let found = false
-      while(current && !found){
-            if(data < current.value){
-              current = current.left
-             } else if(data > current.value){
-                current = current.right
-             } else {
-                  found = current
-             } 
-            
-            }
-    
-        
-        return found
-      
-  
+  find(data) {
+    if (!this.root) return false
+
+    let current = this.root
+    let found = false
+    while (current && !found) {
+      if (data < current.value) {
+        current = current.left
+      } else if (data > current.value) {
+        current = current.right
+      } else {
+        found = current
+      }
+    }
+
+    return found
   }
-
-
-
 }
-
-
-
-
-
-
-
 
 console.log('tree')
 const appleTree = new tree(1)
@@ -174,8 +157,64 @@ appleTree.add(30)
 appleTree.add(19)
 appleTree.add(18)
 
-
 console.log(appleTree.find(18))
-
 console.log(appleTree.getList())
 
+let arrForSort = [2, -1, 7, 0, 5, 8, 4, 9, 3, 6]
+console.log('selectSort')
+function selectSort(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] > arr[j]) {
+        let temp = arr[i]
+        arr[i] = arr[j]
+        arr[j] = temp
+      }
+    }
+  }
+  return arr
+}
+console.log(selectSort([...arrForSort]))
+
+console.log('mergeSort')
+function mergeSort(arr) {
+  if (arr.length <= 1) {
+    return arr
+  }
+
+  let middleIndex = Math.floor(arr.length / 2)
+  let biggerThenMiddlePart = []
+  let smallerThenMiddlePart = []
+
+  for (let i = 0; i < arr.length; i++) {
+    if (i === middleIndex) continue
+    if (arr[i] < arr[middleIndex]) {
+      smallerThenMiddlePart.push(arr[i])
+    } else {
+      biggerThenMiddlePart.push(arr[i])
+    }
+  }
+  return [
+    ...mergeSort(smallerThenMiddlePart),
+    arr[middleIndex],
+    ...mergeSort(biggerThenMiddlePart),
+  ]
+}
+console.log(mergeSort(arrForSort))
+
+console.log('insertSort')
+function insertSort(arr) {
+  let key, j
+  for (let i = 1; i < arr.length; i++) {
+    key = arr[i]
+    j = i - 1
+    while (j >= 0 && arr[j] > key) {
+      arr[j + 1] = arr[j]
+      j = j - 1
+    }
+    arr[j + 1] = key
+  }
+
+  return arr
+}
+console.log(insertSort(arrForSort))
